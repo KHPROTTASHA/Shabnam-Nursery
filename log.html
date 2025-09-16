@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Plants Nursery — Demo</title>
+  <style>
+    /* ---------- Reset & base ---------- */
+    :root{
+      --green:#2e8b57;
+      --light-green:#eaffef;
+      --accent:#79c267;
+      --muted:#6b6b6b;
+      --card:#ffffff;
+      --glass: rgba(255,255,255,0.85);
+      --max-width:1200px;
+      --radius:12px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: linear-gradient(180deg,#f7fff8 0%,#ffffff 100%);
+      color:#222;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* ---------- Layout ---------- */
+    .container{
+      max-width:var(--max-width);
+      margin:22px auto;
+      padding:18px;
+    }
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:18px;
+    }
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .brand .logo{
+      width:46px;height:46px;border-radius:8px;
+      background:linear-gradient(135deg,var(--green),var(--accent));
+      display:grid;place-items:center;color:white;font-weight:700;
+      box-shadow: 0 4px 10px rgba(46,139,87,0.12);
+    }
+    nav ul{display:flex;gap:14px;list-style:none;padding:0;margin:0;align-items:center}
+    nav li a{padding:8px 12px;border-radius:8px;color:var(--muted);font-weight:600}
+    nav li a:hover{background:rgba(0,0,0,0.04);color:var(--green)}
+    .actions{display:flex;gap:10px;align-items:center}
+    .btn{
+      background:var(--green);color:#fff;padding:8px 14px;border-radius:10px;border:0;font-weight:600;
+      cursor:pointer;box-shadow:0 6px 18px rgba(46,139,87,0.12)
+    }
+    .btn.ghost{background:transparent;color:var(--green);box-shadow:none;border:1px solid rgba(46,139,87,0.12)}
+    header .cart{position:relative}
+    header .cart .count{position:absolute;right:-6px;top:-6px;background:#ff6b6b;color:#fff;border-radius:50%;padding:2px 6px;font-size:12px}
+
+    /* ---------- Two-column main ---------- */
+    .main{
+      display:grid;
+      grid-template-columns: 280px 1fr;
+      gap:20px;
+      align-items:start;
+    }
+
+    /* left panel (login/register) */
+    .auth{
+      background:linear-gradient(180deg,var(--light-green),#f6fff7);
+      border-radius:12px;padding:18px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.03);
+      position:sticky;top:22px;
+    }
+    .auth h3{margin:0 0 10px 0;color:var(--green)}
+    .tabs{display:flex;gap:8px;margin-bottom:12px}
+    .tabs button{flex:1;padding:8px;border-radius:999px;border:1px solid rgba(0,0,0,0.04);background:white;cursor:pointer}
+    .tabs button.active{background:var(--green);color:white;border-color:transparent}
+    .form-row{margin-bottom:10px}
+    .form-row label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+    .form-row input, .form-row select{
+      width:100%;padding:10px;border-radius:8px;border:1px solid #e7e7e7;background:#fff;
+    }
+    .login-foot{display:flex;align-items:center;justify-content:space-between;font-size:13px;margin-top:8px}
+
+    /* hero */
+    .hero{
+      display:flex;gap:18px;padding:18px;border-radius:12px;background:linear-gradient(90deg,#fff 0%,rgba(121,194,103,0.06) 100%);
+      align-items:center;margin-bottom:18px;
+    }
+    .hero .left{flex:1}
+    .hero h1{margin:0 0 8px 0;color:var(--green);font-size:26px}
+    .hero p{margin:0;color:var(--muted)}
+    .hero .cta{margin-top:12px}
+    .hero-img{width:210px;height:110px;border-radius:8px;overflow:hidden;flex-shrink:0;box-shadow:0 6px 18px rgba(0,0,0,0.05)}
+
+    /* shop area */
+    .shop{
+      display:grid;
+      grid-template-columns: 200px 1fr;
+      gap:18px;
+    }
+    .categories{
+      background:#fff;border-radius:12px;padding:12px;border:1px solid #f0f0f0;
+      box-shadow:0 6px 18px rgba(0,0,0,0.03);
+    }
+    .categories h4{margin:0 0 8px 0;color:var(--green)}
+    .cats{display:flex;flex-direction:column;gap:8px}
+    .cat{padding:8px;border-radius:8px;background:linear-gradient(90deg,#e8fff0,#f7fff8);cursor:pointer;font-weight:600}
+    .cat.active{background:linear-gradient(90deg,var(--accent),var(--green));color:#fff}
+
+    .product-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
+      gap:16px;
+    }
+    .card{
+      background:var(--card);border-radius:12px;padding:12px;border:1px solid #f1f1f1;
+      display:flex;flex-direction:column;gap:8px;
+    }
+    .thumb{height:120px;border-radius:8px;overflow:hidden}
+    .meta{display:flex;justify-content:space-between;align-items:center}
+    .meta .price{font-weight:800;color:var(--green)}
+    .meta .rating{font-size:12px;color:#f3b400}
+    .card .desc{font-size:14px;color:var(--muted);min-height:36px}
+
+    .card .actions{display:flex;gap:8px;margin-top:auto}
+    .small-btn{padding:8px;border-radius:8px;border:0;background:var(--accent);color:#fff;cursor:pointer;font-weight:700}
+
+    /* product modal */
+    .modal{
+      position:fixed;left:0;top:0;right:0;bottom:0;display:none;align-items:center;justify-content:center;
+      background:rgba(0,0,0,0.35);z-index:60;padding:18px;
+    }
+    .modal.open{display:flex}
+    .modal-card{width:880px;max-width:98%;background:#fff;border-radius:12px;overflow:hidden;display:grid;grid-template-columns: 360px 1fr}
+    .modal-card .prod-img{height:100%;min-height:280px;background:#f7f7f7;padding:14px}
+    .modal-card .details{padding:18px;display:flex;flex-direction:column;gap:10px}
+
+    /* cart drawer */
+    .cart-drawer{
+      position:fixed;right:12px;bottom:12px;background:#fff;border-radius:12px;padding:12px;min-width:260px;box-shadow:0 10px 30px rgba(0,0,0,0.12);
+      z-index:70;
+    }
+
+    /* sections: product detail, forms */
+    section.card-section{
+      background:#fff;padding:18px;border-radius:12px;margin-top:18px;border:1px solid #f1f1f1;
+    }
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+
+    /* forms */
+    form .row{margin-bottom:10px}
+    form .row label{display:block;margin-bottom:6px;color:var(--muted)}
+    form .row input, form .row select{width:100%;padding:10px;border-radius:8px;border:1px solid #eee}
+
+    /* footer */
+    footer{margin-top:28px;text-align:center;color:var(--muted);font-size:13px;padding:16px 0}
+
+    /* responsive */
+    @media (max-width:980px){
+      .main{grid-template-columns:1fr}
+      .hero{flex-direction:column;align-items:flex-start}
+      .shop{grid-template-columns:1fr}
+      .product-grid{grid-template-columns: repeat(auto-fill,minmax(150px,1fr))}
+      .modal-card{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">PN</div>
+        <div>
+          <div style="font-weight:800;color:var(--green)">Plants Nursery</div>
+          <div style="font-size:12px;color:var(--muted)">More Green Plants. Better Environment.</div>
+        </div>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#handover">Handover</a></li>
+          <li><a href="#login">Login</a></li>
+        </ul>
+      </nav>
+
+      <div class="actions">
+        <button class="btn ghost" id="openSearch">Search</button>
+        <div class="cart">
+          <button class="btn" id="openCart">Cart 🛒</button>
+          <span class="count" id="cart-count">0</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <!-- left: auth -->
+      <aside class="auth" id="login">
+        <h3>Login / Register</h3>
+        <div class="tabs">
+          <button id="tab-login" class="active">Login</button>
+          <button id="tab-register">Register</button>
+        </div>
+
+        <div id="loginForm">
+          <div class="form-row">
+            <label for="li-email">Email</label>
+            <input id="li-email" placeholder="you@example.com"/>
+          </div>
+          <div class="form-row">
+            <label for="li-pass">Password</label>
+            <input id="li-pass" type="password" placeholder="Password"/>
+          </div>
+          <div class="login-foot">
+            <small><a href="#" id="forgot">Forgot password?</a></small>
+            <button class="btn" id="loginBtn">Login</button>
+          </div>
+        </div>
+
+        <div id="registerForm" style="display:none">
+          <div class="form-row">
+            <label for="reg-name">Name</label>
+            <input id="reg-name" placeholder="Full name"/>
+          </div>
+          <div class="form-row">
+            <label for="reg-email">Email</label>
+            <input id="reg-email" placeholder="you@example.com"/>
+          </div>
+          <div class="form-row">
+            <label for="reg-pass">Password</label>
+            <input id="reg-pass" type="password" placeholder="Choose a password"/>
+          </div>
+          <div style="display:flex;gap:8px;justify-content:flex-end">
+            <button class="btn" id="registerBtn">Create account</button>
+          </div>
+        </div>
+
+        <hr style="border:none;border-top:1px dashed #e8e8e8;margin:12px 0">
+
+        <div style="font-size:13px;color:var(--muted);">
+          <strong>Contact Us</strong>
+          <p style="margin:6px 0 0 0">Email: contact@plants.example<br/>Phone: +880 1234 567890</p>
+        </div>
+      </aside>
+
+      <!-- right: content -->
+      <section class="content">
+        <div class="hero" id="home">
+          <div class="left">
+            <h1>More Green Plants. Better Environment to Live.</h1>
+            <p>Quality indoor & outdoor plants, handover, and convenient online payment. Explore trending pots and combos.</p>
+            <div class="cta">
+              <button class="btn" onclick="document.querySelector('#shop').scrollIntoView({behavior:'smooth'})">Shop Now</button>
+            </div>
+          </div>
+          <div class="hero-img">
+            <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=33a7d2c4f7b8b3e3a6d0a7b6e6d9b3b1" alt="plants hero">
+          </div>
+        </div>
+
+        <!-- Shop -->
+        <div id="shop" class="shop">
+          <aside class="categories">
+            <h4>Categories</h4>
+            <div class="cats" id="cats">
+              <div class="cat active" data-cat="all">All Plants</div>
+              <div class="cat" data-cat="indoor">Indoor</div>
+              <div class="cat" data-cat="medicinal">Medicinal</div>
+              <div class="cat" data-cat="fruits">Fruits</div>
+              <div class="cat" data-cat="flowers">Flowers</div>
+              <div class="cat" data-cat="bonsai">Bonsai</div>
+            </div>
+          </aside>
+
+          <div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+              <h3 style="margin:0;color:var(--green)">Shop</h3>
+              <div style="color:var(--muted)">Showing <span id="prod-count">8</span> products</div>
+            </div>
+
+            <div class="product-grid" id="productGrid">
+              <!-- product cards inserted by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Product detail / order section -->
+        <section class="card-section" id="productDetail" style="display:none">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <h3 style="margin:0">Product</h3>
+            <button class="btn ghost" id="close-detail">Close</button>
+          </div>
+          <div id="detailArea" style="margin-top:12px"></div>
+        </section>
+
+        <!-- Handover Form -->
+        <section class="card-section" id="handover">
+          <h3>Handover Form</h3>
+          <p style="color:var(--muted);margin-top:6px">Fill details when you want to handover plants to the shop or sell via our website.</p>
+          <form id="handoverForm" style="margin-top:12px">
+            <div class="grid-2">
+              <div>
+                <div class="row">
+                  <label>Full name</label>
+                  <input required id="ho-name"/>
+                </div>
+                <div class="row">
+                  <label>Email</label>
+                  <input required id="ho-email" type="email"/>
+                </div>
+                <div class="row">
+                  <label>Phone number</label>
+                  <input required id="ho-phone" />
+                </div>
+              </div>
+              <div>
+                <div class="row">
+                  <label>Plant Type</label>
+                  <select id="ho-type">
+                    <option>Indoor</option>
+                    <option>Flowers</option>
+                    <option>Bonsai</option>
+                    <option>Fruits</option>
+                  </select>
+                </div>
+                <div class="row">
+                  <label>Quantity</label>
+                  <input id="ho-qty" type="number" value="1" min="1"/>
+                </div>
+                <div class="row">
+                  <label>Notes</label>
+                  <input id="ho-notes" placeholder="Optional..."/>
+                </div>
+              </div>
+            </div>
+            <div style="text-align:right;margin-top:10px">
+              <button type="button" class="btn" id="submitHandover">Submit Handover</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- Payment Form -->
+        <section class="card-section" id="payment" style="margin-top:18px">
+          <h3>Payment</h3>
+          <p style="color:var(--muted);margin-top:6px">Enter card details to pay for your cart items (demo).</p>
+          <form id="paymentForm" style="margin-top:12px">
+            <div class="grid-2">
+              <div>
+                <div class="row">
+                  <label>Full name</label>
+                  <input id="pay-name" required/>
+                </div>
+                <div class="row">
+                  <label>Address</label>
+                  <input id="pay-address" />
+                </div>
+                <div class="row">
+                  <label>City</label>
+                  <input id="pay-city" />
+                </div>
+              </div>
+              <div>
+                <div class="row">
+                  <label>Card number</label>
+                  <input id="pay-card" required maxlength="19" placeholder="4242 4242 4242 4242"/>
+                </div>
+                <div class="row" style="display:flex;gap:8px">
+                  <div style="flex:1">
+                    <label>Exp month</label>
+                    <input id="pay-exp" placeholder="MM/YY"/>
+                  </div>
+                  <div style="flex:0.6">
+                    <label>CVV</label>
+                    <input id="pay-cvv" maxlength="4"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="text-align:right;margin-top:10px">
+              <button type="button" class="btn" id="payBtn">Make Payment</button>
+            </div>
+          </form>
+        </section>
+
+        <footer>
+          © 2025 Plants Nursery — Demo. This is a static demo (images from Unsplash).
+        </footer>
+      </section>
+    </main>
+  </div>
+
+  <!-- Product modal -->
+  <div class="modal" id="productModal" role="dialog" aria-hidden="true">
+    <div class="modal-card" role="document">
+      <div class="prod-img" id="modalImg"></div>
+      <div class="details">
+        <h3 id="modalTitle"></h3>
+        <div style="display:flex;gap:12px;align-items:center">
+          <div class="price" id="modalPrice" style="color:var(--green);font-weight:800"></div>
+          <div class="rating" id="modalRating"></div>
+        </div>
+        <p id="modalDesc" style="color:var(--muted)"></p>
+        <div style="display:flex;gap:8px;align-items:center">
+          <label style="font-weight:700">Qty</label>
+          <input id="modalQty" value="1" style="width:64px;padding:8px;border-radius:8px;border:1px solid #eee"/>
+          <button class="btn" id="addToCart">Add to cart</button>
+          <button class="btn ghost" id="closeModal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- cart drawer -->
+  <div id="cartDrawer" style="display:none" class="cart-drawer">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <strong>Cart</strong>
+      <button class="btn ghost" id="checkoutOpen">Checkout</button>
+    </div>
+    <div id="cartItems" style="margin-top:8px;min-width:240px"></div>
+    <div style="border-top:1px dashed #eee;margin-top:8px;padding-top:8px;display:flex;justify-content:space-between;align-items:center">
+      <div style="font-weight:700">Total</div>
+      <div id="cartTotal">৳0.00</div>
+    </div>
+  </div>
+
+  <script>
+    /* ---------- Sample products dataset ---------- */
+    const PRODUCTS = [
+      {id:1, title:"Special 4 Plants Pack", price:999, img:"https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=600&auto=format&fit=crop", rating:4.8, category:"indoor", desc:"A curated pack of 4 indoor plants perfect for living rooms."},
+      {id:2, title:"Succulent Garden", price:499, img:"https://images.unsplash.com/photo-1518837695005-2083093ee35b?q=80&w=600&auto=format&fit=crop", rating:4.6, category:"bonsai", desc:"Multiple small succulents in decorative pots."},
+      {id:3, title:"Fiddle Leaf Fig", price:1299, img:"https://images.unsplash.com/photo-1526318472351-c75fcf070b1f?q=80&w=600&auto=format&fit=crop", rating:4.7, category:"indoor", desc:"Large statement plant for well-lit rooms."},
+      {id:4, title:"Herb Starter Pack", price:299, img:"https://images.unsplash.com/photo-1592928301522-3f2ee1e7d153?q=80&w=600&auto=format&fit=crop", rating:4.5, category:"medicinal", desc:"Grow basil, mint, and coriander at home."},
+      {id:5, title:"Mini Bonsai", price:899, img:"https://images.unsplash.com/photo-1520975919404-1f5d0a1e39f2?q=80&w=600&auto=format&fit=crop", rating:4.4, category:"bonsai", desc:"Carefully trained miniature bonsai tree."},
+      {id:6, title:"Hanging Pothos", price:299, img:"https://images.unsplash.com/photo-1492724441997-5dc865305da7?q=80&w=600&auto=format&fit=crop", rating:4.3, category:"indoor", desc:"Beautiful trailing plant ideal for hanging baskets."},
+      {id:7, title:"Flowering Orchid", price:1499, img:"https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=600&auto=format&fit=crop", rating:4.6, category:"flowers", desc:"Elegant flowering plant for gifts."},
+      {id:8, title:"Citrus Fruit Tree", price:1999, img:"https://images.unsplash.com/photo-1482192596544-9eb780fc7f66?q=80&w=600&auto=format&fit=crop", rating:4.7, category:"fruits", desc:"Dwarf citrus tree for pot growth and fruiting."}
+    ];
+
+    /* ---------- Render product cards ---------- */
+    const grid = document.getElementById('productGrid');
+    const prodCount = document.getElementById('prod-count');
+    const cartCountEl = document.getElementById('cart-count');
+    let CART = {}; // {id: qty}
+
+    function renderProducts(filter='all'){
+      grid.innerHTML='';
+      const items = PRODUCTS.filter(p => filter==='all' ? true : p.category===filter);
+      prodCount.textContent = items.length;
+      items.forEach(p=>{
+        const card = document.createElement('div');
+        card.className='card';
+        card.innerHTML = `
+          <div class="thumb"><img src="${p.img}" alt="${escapeHtml(p.title)}"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div style="font-weight:700">${escapeHtml(p.title)}</div>
+            <div class="price">৳${p.price}</div>
+          </div>
+          <div class="desc">${escapeHtml(p.desc)}</div>
+          <div class="actions">
+            <button class="small-btn" data-id="${p.id}" onclick="openProduct(${p.id})">View</button>
+            <button class="small-btn" onclick="addCart(${p.id},1)">Add</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+    renderProducts();
+
+    /* ---------- Category clicks ---------- */
+    document.querySelectorAll('.cat').forEach(el=>{
+      el.addEventListener('click', (e)=>{
+        document.querySelectorAll('.cat').forEach(c=>c.classList.remove('active'));
+        el.classList.add('active');
+        renderProducts(el.dataset.cat);
+      });
+    });
+
+    /* ---------- Tabs (login/register) ---------- */
+    document.getElementById('tab-login').addEventListener('click', ()=>{
+      document.getElementById('tab-login').classList.add('active');
+      document.getElementById('tab-register').classList.remove('active');
+      document.getElementById('loginForm').style.display='block';
+      document.getElementById('registerForm').style.display='none';
+    });
+    document.getElementById('tab-register').addEventListener('click', ()=>{
+      document.getElementById('tab-register').classList.add('active');
+      document.getElementById('tab-login').classList.remove('active');
+      document.getElementById('loginForm').style.display='none';
+      document.getElementById('registerForm').style.display='block';
+    });
+    document.getElementById('loginBtn').addEventListener('click', ()=>alert('Login demo — form not submitted.'));
+    document.getElementById('registerBtn').addEventListener('click', ()=>alert('Register demo — account created (demo).'));
+
+    /* ---------- Product modal ---------- */
+    const modal = document.getElementById('productModal');
+    function openProduct(id){
+      const p = PRODUCTS.find(x=>x.id===id);
+      if(!p) return;
+      document.getElementById('modalImg').innerHTML = `<img src="${p.img}" alt="${escapeHtml(p.title)}" style="width:100%;height:100%;object-fit:cover">`;
+      document.getElementById('modalTitle').textContent = p.title;
+      document.getElementById('modalPrice').textContent = '৳' + p.price;
+      document.getElementById('modalRating').textContent = p.rating + ' ★';
+      document.getElementById('modalDesc').textContent = p.desc;
+      document.getElementById('modalQty').value = 1;
+      modal.classList.add('open');
+      modal.dataset.product = id;
+    }
+    document.getElementById('closeModal').addEventListener('click', ()=>modal.classList.remove('open'));
+    modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.classList.remove('open') });
+
+    /* ---------- Cart behavior ---------- */
+    function addCart(id, qty=1){
+      CART[id] = (CART[id]||0) + qty;
+      updateCartUI();
+      alert('Added to cart');
+    }
+    document.getElementById('addToCart').addEventListener('click', ()=>{
+      const id = Number(modal.dataset.product);
+      const qty = Number(document.getElementById('modalQty').value) || 1;
+      addCart(id, qty);
+      modal.classList.remove('open');
+    });
+
+    function updateCartUI(){
+      const itemsDiv = document.getElementById('cartItems');
+      itemsDiv.innerHTML='';
+      let total = 0;
+      for(const idStr of Object.keys(CART)){
+        const id = Number(idStr);
+        const qty = CART[id];
+        const p = PRODUCTS.find(x=>x.id===id);
+        if(!p) continue;
+        const row = document.createElement('div');
+        row.style.display='flex';row.style.justifyContent='space-between';row.style.alignItems='center';row.style.marginBottom='8px';
+        row.innerHTML = `<div style="min-width:120px"><strong>${escapeHtml(p.title)}</strong><div style="color:var(--muted);font-size:13px">৳${p.price} × ${qty}</div></div>
+          <div style="display:flex;gap:6px;align-items:center">
+            <button class="btn ghost" onclick="decrement(${id})">-</button>
+            <div style="min-width:24px;text-align:center">${qty}</div>
+            <button class="btn ghost" onclick="increment(${id})">+</button>
+          </div>`;
+        itemsDiv.appendChild(row);
+        total += p.price * qty;
+      }
+      document.getElementById('cartTotal').textContent = '৳' + total.toFixed(2);
+      cartCountEl.textContent = Object.values(CART).reduce((s,n)=>s+n,0);
+    }
+    function increment(id){ addCart(id,1) }
+    function decrement(id){
+      if(!CART[id]) return;
+      CART[id]--;
+      if(CART[id]<=0) delete CART[id];
+      updateCartUI();
+    }
+
+    document.getElementById('openCart').addEventListener('click', ()=>{
+      const c = document.getElementById('cartDrawer');
+      c.style.display = c.style.display==='none' ? 'block' : 'none';
+      updateCartUI();
+    });
+
+    document.getElementById('checkoutOpen').addEventListener('click', ()=>{
+      window.location.hash = '#payment';
+      document.getElementById('cartDrawer').style.display='none';
+    });
+
+    /* ---------- Handover and Payment submit handlers (simple demo) ---------- */
+    document.getElementById('submitHandover').addEventListener('click', ()=>{
+      const name = document.getElementById('ho-name').value.trim();
+      const email = document.getElementById('ho-email').value.trim();
+      const phone = document.getElementById('ho-phone').value.trim();
+      if(!name || !email || !phone){ alert('Please fill required handover fields.'); return; }
+      alert('Handover submitted — we will contact you. (demo)');
+      document.getElementById('handoverForm').reset();
+    });
+
+    document.getElementById('payBtn').addEventListener('click', ()=>{
+      if(Object.keys(CART).length===0){ alert('Your cart is empty. Add items to pay.'); return; }
+      const card = document.getElementById('pay-card').value.trim();
+      const name = document.getElementById('pay-name').value.trim();
+      if(!card || !name){ alert('Please fill name and card number.'); return; }
+      alert('Payment processed (demo). Thank you!');
+      CART = {};
+      updateCartUI();
+      document.getElementById('paymentForm').reset();
+    });
+
+    /* ---------- Utility & small polish ---------- */
+    function escapeHtml(s){ return String(s).replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[m]) }
+    // render initial small cards
+    renderProducts();
+
+    // simple product detail open (in-page)
+    document.getElementById('close-detail').addEventListener('click', ()=>document.getElementById('productDetail').style.display='none');
+
+    // quick open product by id in detail section (unused but kept)
+    function showProductInPage(id){
+      const p = PRODUCTS.find(x=>x.id===id);
+      if(!p) return;
+      const area = document.getElementById('detailArea');
+      area.innerHTML = `
+        <div style="display:flex;gap:18px;flex-wrap:wrap">
+          <div style="flex:1;min-width:260px"><img src="${p.img}" style="width:100%;border-radius:8px" alt="${escapeHtml(p.title)}" /></div>
+          <div style="flex:1;min-width:260px">
+            <h3>${escapeHtml(p.title)}</h3>
+            <div style="color:var(--green);font-weight:800">৳${p.price}</div>
+            <p style="color:var(--muted)">${escapeHtml(p.desc)}</p>
+            <div style="display:flex;gap:8px">
+              <button class="btn" onclick="addCart(${p.id},1)">Add to cart</button>
+            </div>
+          </div>
+        </div>
+      `;
+      document.getElementById('productDetail').style.display='block';
+      window.scrollTo({top:document.getElementById('productDetail').offsetTop - 20, behavior:'smooth'});
+    }
+
+    // expose some functions to global for inline onclicks
+    window.openProduct = openProduct;
+    window.addCart = addCart;
+    window.showProductInPage = showProductInPage;
+
+    // simple "search" demo
+    document.getElementById('openSearch').addEventListener('click', ()=>{
+      const term = prompt('Search plants (demo):');
+      if(!term) return;
+      const found = PRODUCTS.filter(p => p.title.toLowerCase().includes(term.toLowerCase()) || p.desc.toLowerCase().includes(term.toLowerCase()));
+      if(found.length===0){ alert('No products found'); return; }
+      alert(found.length + ' product(s) found — click OK to show first in detail.');
+      showProductInPage(found[0].id);
+    });
+
+    // small reveal cart if items present on load
+    updateCartUI();
+  </script>
+</body>
+</html>
