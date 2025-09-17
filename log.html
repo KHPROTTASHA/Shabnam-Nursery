@@ -430,7 +430,7 @@
     <div id="cartItems" style="margin-top:8px;min-width:240px"></div>
     <div style="border-top:1px dashed #eee;margin-top:8px;padding-top:8px;display:flex;justify-content:space-between;align-items:center">
       <div style="font-weight:700">Total</div>
-      <div id="cartTotal">৳0.00</div>
+      <div id="cartTotal">₹0.00</div>
     </div>
   </div>
 
@@ -464,7 +464,7 @@
           <div class="thumb"><img src="${p.img}" alt="${escapeHtml(p.title)}"></div>
           <div style="display:flex;justify-content:space-between;align-items:center">
             <div style="font-weight:700">${escapeHtml(p.title)}</div>
-            <div class="price">৳${p.price}</div>
+            <div class="price">₹${p.price}</div>
           </div>
           <div class="desc">${escapeHtml(p.desc)}</div>
           <div class="actions">
@@ -509,7 +509,7 @@
       if(!p) return;
       document.getElementById('modalImg').innerHTML = `<img src="${p.img}" alt="${escapeHtml(p.title)}" style="width:100%;height:100%;object-fit:cover">`;
       document.getElementById('modalTitle').textContent = p.title;
-      document.getElementById('modalPrice').textContent = '৳' + p.price;
+      document.getElementById('modalPrice').textContent = '₹' + p.price;
       document.getElementById('modalRating').textContent = p.rating + ' ★';
       document.getElementById('modalDesc').textContent = p.desc;
       document.getElementById('modalQty').value = 1;
@@ -543,7 +543,7 @@
         if(!p) continue;
         const row = document.createElement('div');
         row.style.display='flex';row.style.justifyContent='space-between';row.style.alignItems='center';row.style.marginBottom='8px';
-        row.innerHTML = `<div style="min-width:120px"><strong>${escapeHtml(p.title)}</strong><div style="color:var(--muted);font-size:13px">৳${p.price} × ${qty}</div></div>
+        row.innerHTML = `<div style="min-width:120px"><strong>${escapeHtml(p.title)}</strong><div style="color:var(--muted);font-size:13px">₹${p.price} × ${qty}</div></div>
           <div style="display:flex;gap:6px;align-items:center">
             <button class="btn ghost" onclick="decrement(${id})">-</button>
             <div style="min-width:24px;text-align:center">${qty}</div>
@@ -552,7 +552,7 @@
         itemsDiv.appendChild(row);
         total += p.price * qty;
       }
-      document.getElementById('cartTotal').textContent = '৳' + total.toFixed(2);
+      document.getElementById('cartTotal').textContent = '₹' + total.toFixed(2);
       cartCountEl.textContent = Object.values(CART).reduce((s,n)=>s+n,0);
     }
     function increment(id){ addCart(id,1) }
@@ -613,7 +613,7 @@
           <div style="flex:1;min-width:260px"><img src="${p.img}" style="width:100%;border-radius:8px" alt="${escapeHtml(p.title)}" /></div>
           <div style="flex:1;min-width:260px">
             <h3>${escapeHtml(p.title)}</h3>
-            <div style="color:var(--green);font-weight:800">৳${p.price}</div>
+            <div style="color:var(--green);font-weight:800">₹${p.price}</div>
             <p style="color:var(--muted)">${escapeHtml(p.desc)}</p>
             <div style="display:flex;gap:8px">
               <button class="btn" onclick="addCart(${p.id},1)">Add to cart</button>

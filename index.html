@@ -635,7 +635,7 @@
   .product-card{flex:0 0 calc(33.333% - 12px);background:#f1f1f1;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.1);cursor:pointer;}
   .product-card img{width:100%;height:220px;object-fit:cover;transition:0.4s;}
   .product-card:hover img{transform:scale(1.05);}
-  .product-card h4{padding:12px;background:#fff;font-size:16px;font-weight:600;text-align:center;}
+  .product-card h4{padding:12px;background:#57a864;font-size:16px;font-weight:600;text-align:center;}
   .product-nav{position:absolute;top:50%;right:10px;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;}
   .product-nav button{background:var(--green);color:#fff;border:none;padding:12px 16px;font-size:18px;border-radius:8px;cursor:pointer;transition:0.3s;}
   .product-nav button:hover{background:#57a864;}
@@ -678,7 +678,7 @@
   
   /* Tabs */
   .tabs{display:flex;gap:10px;justify-content:center;margin:18px 0}
-  .tab{padding:10px 18px;border-radius:999px;border:1px solid #e6e6e6;background:#111111;cursor:pointer}
+  .tab{padding:10px 18px;border-radius:999px;border:1px solid #e6e6e6;background:#bfeca5;cursor:pointer}
   .tab.active{background:var(--green);color:#fff;border-color:var(--green)}
   
   /* Video */
@@ -1214,10 +1214,7 @@
       display: flex;
     }
     
-    /* Hide regular call button on mobile */
-    .call {
-      display: none;
-    }
+   
     
     /* Fix for address bar on mobile - make it more visible */
     .address-bar {
@@ -1280,7 +1277,11 @@
     .btn {
       width: 100%;
     }
-    
+     /* Hide regular call button on mobile */
+    .call {
+      display: none;
+    } 
+
     .team-grid {
       grid-template-columns: 1fr;
     }
@@ -1321,7 +1322,10 @@
     .hero-content h1 {
       font-size: 24px;
     }
-    
+     /* Hide regular call button on mobile */
+    .call {
+      display: none;
+    } 
     .hero-content p {
       font-size: 14px;
     }
@@ -1379,6 +1383,25 @@
     text-decoration: none;
   }
 }
+.opening-hours {
+  margin: 18px 0;
+  background: #f9f9f9;
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.opening-hours h4 {
+  margin-bottom: 8px;
+  font-size: 18px;
+  color: #333;
+}
+
+.opening-hours p {
+  margin: 4px 0;
+  font-size: 15px;
+  color: #444;
+}
 
   }
   </style>
@@ -1419,11 +1442,11 @@
 
 <!-- Social Media Bar -->
 <div class="social-bar">
-  <a href="#"><i class="fab fa-facebook-f"></i></a>
+  <a href="https://www.facebook.com/shabnamnursery2021/?locale=hi_IN"><i class="fab fa-facebook-f"></i></a>
   <a href="#"><i class="fab fa-instagram"></i></a>
   <a href="#"><i class="fab fa-twitter"></i></a>
-  <a href="#"><i class="fab fa-youtube"></i></a>
-  <a href="#"><i class="fab fa-whatsapp"></i></a>
+  <a href="https://www.youtube.com/@ShabnamNursery-ayan"><i class="fab fa-youtube"></i></a>
+  <a href="https://wa.me/917584805020?text=Hello%20I%20am%20interested%20in%20your%20plants" target="_blank"><i class="fab fa-whatsapp"></i></a>
 </div>
 
 <div class="address-bar"><span>Baduria, Basirhat, North 24 Parganas || shabnammondal2022@gmail.com || Emergency 24/7 call: 7584805020</span></div>
@@ -1533,22 +1556,22 @@
   <h2>Our Products</h2>
   <div class="product-slider">
     <div class="product-track" id="product-track">
-      <div class="product-card" data-title="Golden 8 Guava" data-desc="High yield, sweet taste, premium quality Guava." data-img="https://picsum.photos/400/300?random=4">
+      <div class="product-card" data-title="Golden 8 Guava" data-desc="High yield, sweet taste, premium quality Guava." data-img="images/service1.jpg">
         <img src="images/service1.jpg"><h4>Golden 8 Guava</h4>
       </div>
-      <div class="product-card" data-title="Vietnam Jackfruit" data-desc="Super early, large size, rich nutrition Jackfruit." data-img="https://picsum.photos/400/300?random=5">
+      <div class="product-card" data-title="Vietnam Jackfruit" data-desc="Super early, large size, rich nutrition Jackfruit." data-img="images/service3.jpg">
         <img src="images/service3.jpg"><h4>Vietnam Jackfruit</h4>
       </div>
-      <div class="product-card" data-title="Kagdi Lemon" data-desc="High juice content, Sadabahar Lemon variety." data-img="https://picsum.photos/400/300?random=6">
+      <div class="product-card" data-title="Kagdi Lemon" data-desc="High juice content, Sadabahar Lemon variety." data-img="images/Kagdi Lemon.jpg">
         <img src="images/Kagdi Lemon.jpg"><h4>Kagdi Lemon</h4>
       </div>
-      <div class="product-card" data-title="Macadamia Nuts" data-desc="High quality, profitable nut production." data-img="https://picsum.photos/400/300?random=7">
+      <div class="product-card" data-title="Macadamia Nuts" data-desc="High quality, profitable nut production." data-img="images/Macadamia Nuts.webp">
         <img src="images/Macadamia Nuts.webp"><h4>Macadamia Nuts</h4>
       </div>
-      <div class="product-card" data-title="Alphonso Mango" data-desc="Rich flavor, premium Alphonso mango plants." data-img="https://picsum.photos/400/300?random=8">
+      <div class="product-card" data-title="Alphonso Mango" data-desc="Rich flavor, premium Alphonso mango plants." data-img="images/Alphonso Mango.jpg">
         <img src="images/Alphonso Mango.jpg"><h4>Alphonso Mango</h4>
       </div>
-      <div class="product-card" data-title="Lychee Plant" data-desc="Juicy and sweet Lychee, high market demand." data-img="https://picsum.photos/400/300?random=9">
+      <div class="product-card" data-title="Lychee Plant" data-desc="Juicy and sweet Lychee, high market demand." data-img="images/Lychee Plant.jpg">
         <img src="images/Lychee Plant.jpg"><h4>Lychee Plant</h4>
       </div>
     </div>
@@ -1588,25 +1611,25 @@
     <div class="product" data-name="Organic Fertilizer" data-price="350" data-img="https://picsum.photos/300/250?random=14">
       <img src="images/Organic Fertilizer.png">
       <h3>Organic Fertilizer</h3>
-      <p>৳350</p>
+      <p>₹350</p>
       <button onclick="addToCart(this)" data-name="Organic Fertilizer" data-price="350" data-img="https://picsum.photos/300/250?random=14">Add to Cart</button>
     </div>
     <div class="product" data-name="Plant Growth Tonic" data-price="450" data-img="https://picsum.photos/300/250?random=15">
       <img src="images/Plant Growth Tonic.webp">
       <h3>Plant Growth Tonic</h3>
-      <p>৳450</p>
+      <p>₹450</p>
       <button onclick="addToCart(this)" data-name="Plant Growth Tonic" data-price="450" data-img="https://picsum.photos/300/250?random=15">Add to Cart</button>
     </div>
     <div class="product" data-name="Potting Mix" data-price="250" data-img="https://picsum.photos/300/250?random=16">
       <img src="images/Potting Mix.png">
       <h3>Potting Mix</h3>
-      <p>৳250</p>
+      <p>₹250</p>
       <button onclick="addToCart(this)" data-name="Potting Mix" data-price="250" data-img="https://picsum.photos/300/250?random=16">Add to Cart</button>
     </div>
     <div class="product" data-name="Watering Can" data-price="180" data-img="https://picsum.photos/300/250?random=17">
       <img src="images/Watering Can.jpg">
       <h3>Watering Can</h3>
-      <p>৳180</p>
+      <p>₹180</p>
       <button onclick="addToCart(this)" data-name="Watering Can" data-price="180" data-img="https://picsum.photos/300/250?random=17">Add to Cart</button>
     </div>
   </div>
@@ -1619,25 +1642,25 @@
     <div class="product" data-name="Golden 8 Guava" data-price="500" data-img="https://picsum.photos/300/250?random=10">
       <img src="images/Golden 8 Guava.webp">
       <h3>Golden 8 Guava</h3>
-      <p>৳500</p>
+      <p>₹500</p>
       <button onclick="addToCart(this)" data-name="Golden 8 Guava" data-price="500" data-img="https://picsum.photos/300/250?random=10">Add to Cart</button>
     </div>
     <div class="product" data-name="Vietnam Jackfruit" data-price="800" data-img="https://picsum.photos/300/250?random=11">
       <img src="images/Vietnam Jackfruit.jpg">
       <h3>Vietnam Jackfruit</h3>
-      <p>৳800</p>
+      <p>₹800</p>
       <button onclick="addToCart(this)" data-name="Vietnam Jackfruit" data-price="800" data-img="https://picsum.photos/300/250?random=11">Add to Cart</button>
     </div>
     <div class="product" data-name="Kagdi Lemon" data-price="300" data-img="https://picsum.photos/300/250?random=12">
       <img src="images/Kagdi Lemon.png">
       <h3>Kagdi Lemon</h3>
-      <p>৳300</p>
+      <p>₹300</p>
       <button onclick="addToCart(this)" data-name="Kagdi Lemon" data-price="300" data-img="https://picsum.photos/300/250?random=12">Add to Cart</button>
     </div>
     <div class="product" data-name="Macadamia Nuts" data-price="1200" data-img="https://picsum.photos/300/250?random=13">
       <img src="images/Macadamia Nuts.webp">
       <h3>Macadamia Nuts</h3>
-      <p>৳1200</p>
+      <p>₹1200</p>
       <button onclick="addToCart(this)" data-name="Macadamia Nuts" data-price="1200" data-img="https://picsum.photos/300/250?random=13">Add to Cart</button>
     </div>
   </div>
@@ -1646,9 +1669,9 @@
 <!-- Video Guide Section -->
 <section class="video-guide-section">
   <div class="video-guide-content">
-    <h2>Watch our expert guide to keeping your plants healthy and thriving</h2>
-    <p>Learn from our gardening experts how to care for your plants, including watering techniques, sunlight requirements, and troubleshooting common plant problems. Our comprehensive guide will help you become a successful plant parent.</p>
-    <p>Whether you're a beginner or an experienced gardener, these tips will help your plants flourish and bring life to your space.</p>
+    <h2>अपने पौधों को स्वस्थ और फलते-फूलते रखने के लिए हमारी विशेषज्ञ मार्गदर्शिका देखें </h2>
+    <p>हमारे बागवानी विशेषज्ञों से जानें कि अपने पौधों की देखभाल कैसे करें, जिसमें पानी देने की तकनीक, धूप की ज़रूरतें और पौधों की आम समस्याओं का निवारण शामिल है। हमारी विस्तृत गाइड आपको एक सफल पौधा पालक बनने में मदद करेगी।</p>
+      <p>चाहे आप शुरुआती हों या अनुभवी माली, ये सुझाव आपके पौधों को फलने-फूलने और आपके घर में जान डालने में मदद करेंगे।</p>
   </div>
   <div class="video-container">
     <iframe 
@@ -1666,7 +1689,7 @@
   <p style="max-width: 800px; margin: 0 auto 40px;  color: var(--text-color);">Our dedicated team of horticulture experts and plant enthusiasts is committed to providing you with the best plants and gardening advice.</p>
   <div class="team-grid">
     <div class="team-member">
-      <img src="images/about5.jpg" alt="Ayan Mondal">
+      <img src="images/ayon_01.jpg" alt="Ayan Mondal">
       <div class="team-info">
         <h3>Ayan Mondal</h3>
         <p>Founder & Head Horticulturist</p>
@@ -1679,7 +1702,7 @@
       </div>
     </div>
     <div class="team-member">
-      <img src="images/about4.jpg" alt="RImi Mondal">
+      <img src="images/RImi_01.jpg" alt="RImi Mondal">
       <div class="team-info">
         <h3>Rimi Mondal</h3>
         <p>Nursery Manager</p>
@@ -1692,9 +1715,9 @@
       </div>
     </div>
     <div class="team-member">
-      <img src="images/Sonaly1.jpeg" alt="Rajesh Kumar">
+      <img src="images/sonay_3.jpg" alt="Sonaly Mondal">
       <div class="team-info">
-        <h3>Sonay Mondal</h3>
+        <h3>Sonaly Mondal</h3>
         <p>Plant Care Specialist</p>
         <div class="team-social">
           <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -1705,9 +1728,9 @@
       </div>
     </div>
     <div class="team-member">
-      <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Priya Sharma">
+      <img src="images/sonaly_4.jpg" alt="Sonaly Mondal">
       <div class="team-info">
-        <h3>Priya Sharma</h3>
+        <h3>Sonaly M</h3>
         <p>Customer Relations</p>
         <div class="team-social">
           <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -1727,23 +1750,23 @@
     <div class="testimonial-track" id="testimonial-track">
       <div class="testimonial-slide">
         <div class="testimonial-content">
-          <div class="avatar"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96'><rect width='100%' height='100%' fill='%23fff'/><text x='50%' y='55%' font-size='22' fill='%2333' text-anchor='middle' font-family='Montserrat'>J</text></svg>" alt="John"></div>
-          <p class="testimonial-text">"I've purchased several fruit plants from Shabnam Nursery, and they've all grown beautifully. The quality is exceptional, and their advice has been invaluable for my garden."</p>
-          <p class="testimonial-author">John Duff, Regular Customer</p>
+          <div class="avatar"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96'><rect width='100%' height='100%' fill='%23fff'/><text x='50%' y='55%' font-size='22' fill='%2333' text-anchor='middle' font-family='Montserrat'>जी</text></svg>" alt="John"></div>
+          <p class="testimonial-text">"मैंने शबनम नर्सरी से कई फलों के पौधे खरीदे हैं, और वे सभी बहुत खूबसूरती से उगे हैं। उनकी गुणवत्ता असाधारण है, और उनकी सलाह मेरे बगीचे के लिए अमूल्य रही है।"</p>
+          <p class="testimonial-author">मাস্তান  जी, नियमित ग्राहक</p>
         </div>
       </div>
       <div class="testimonial-slide">
         <div class="testimonial-content">
-          <div class="avatar"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96'><rect width='100%' height='100%' fill='%23fff'/><text x='50%' y='55%' font-size='22' fill='%2333' text-anchor='middle' font-family='Montserrat'>S</text></svg>" alt="Sarah"></div>
-          <p class="testimonial-text">"The Vietnam Jackfruit plant I bought last year has already started bearing fruits! The team at Shabnam Nursery provides excellent after-sales support and guidance."</p>
-          <p class="testimonial-author">Sarah Williams, Home Gardener</p>
+          <div class="avatar"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96'><rect width='100%' height='100%' fill='%23fff'/><text x='50%' y='55%' font-size='22' fill='%2333' text-anchor='middle' font-family='Montserrat'>लड्डू</text></svg>" alt="Sarah"></div>
+          <p class="testimonial-text">"पिछले साल मैंने जो वियतनामी कटहल का पौधा खरीदा था, उसमें फल लगने शुरू हो गए हैं! शबनम नर्सरी की टीम बिक्री के बाद बेहतरीन सहायता और मार्गदर्शन प्रदान करती है।"</p>
+          <p class="testimonial-author">लड्डू हसन, घरेलू माली</p>
         </div>
       </div>
       <div class="testimonial-slide">
         <div class="testimonial-content">
-          <div class="avatar"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96'><rect width='100%' height='100%' fill='%23fff'/><text x='50%' y='55%' font-size='22' fill='%2333' text-anchor='middle' font-family='Montserrat'>R</text></svg>" alt="Raj"></div>
-          <p class="testimonial-text">"As a commercial farmer, I rely on Shabnam Nursery for high-quality plants. Their Golden 8 Guava plants have significantly increased my yield and profits."</p>
-          <p class="testimonial-author">Raj Patel, Commercial Farmer</p>
+          <div class="avatar"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96'><rect width='100%' height='100%' fill='%23fff'/><text x='50%' y='55%' font-size='22' fill='%2333' text-anchor='middle' font-family='Montserrat'>राजू</text></svg>" alt="Raj"></div>
+          <p class="testimonial-text">"एक व्यावसायिक किसान होने के नाते, मैं उच्च गुणवत्ता वाले पौधों के लिए शबनम नर्सरी पर निर्भर हूँ। उनके गोल्डन 8 अमरूद के पौधों ने मेरी उपज और मुनाफे में उल्लेखनीय वृद्धि की है।"</p>
+          <p class="testimonial-author">राजू मंडल, व्यावसायिक किसान</p>
         </div>
       </div>
     </div>
@@ -1759,7 +1782,7 @@
   <span class="close-cart" onclick="toggleCart()">✖</span>
   <h2>Your Cart</h2>
   <div class="cart-items" id="cart-items"></div>
-  <div class="cart-total">Total: ৳<span id="cart-total">0</span></div>
+  <div class="cart-total">Total: ₹<span id="cart-total">0</span></div>
   <button class="checkout" onclick="openPaymentPage()">Checkout</button>
 </div>
 
@@ -1793,7 +1816,7 @@
       <div id="payment-summary"></div>
       <div class="summary-total">
         <span>Total:</span>
-        <span>৳<span id="payment-total">0</span></span>
+        <span>₹<span id="payment-total">0</span></span>
       </div>
     </div>
     
@@ -1811,10 +1834,10 @@
         <p>Pay securely with your card</p>
       </div>
       
-      <div class="payment-method" onclick="selectPayment(this, 'bkash')">
+      <div class="payment-method" onclick="selectPayment(this, 'mobile payment')">
         <i class="fas fa-mobile-alt"></i>
-        <h3>bKash</h3>
-        <p>Pay via bKash mobile payment</p>
+        <h3>Mobile payment</h3>
+        <p>Pay via Gpay,PhonePay,PayTM mobile payment</p>
       </div>
       
       <div class="payment-method" onclick="selectPayment(this, 'bank')">
@@ -1825,7 +1848,7 @@
     </div>
     
     <div class="payment-actions">
-      <button class="btn btn-back" onclick="closePaymentPage()">Back to Cart</button>
+      <button class="btn btn-back" onclick="closePaymentPage()"> << Back to Cart</button>
       <button class="btn btn-confirm" onclick="confirmOrder()">Confirm Order</button>
     </div>
     
@@ -1861,13 +1884,14 @@
 <section class="blog" id="blog">
   <h3 style="text-align:center;font-family:'Playfair Display'">Latest News</h3>
   <div class="blog-grid">
-    <article class="post"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='220'><rect width='100%' height='100%' fill='%23f3f6f3'/><text x='50%' y='50%' font-family='Montserrat' fill='%23888' text-anchor='middle'>Blog image</text></svg>" style="width:100%;border-radius:8px" alt="Blog image">
-      <h4>Suscipit Laborisam Nisi</h4>
-      <p style="color:#666;">Short summary about plant care tips and seasonal pruning.</p>
+    <article class="post">
+      <img src="images/news-3.webp" alt="Blog image" style="width:100%;border-radius:8px;object-fit:cover;height:280px;">
+      <h4>🌱 वियतनाम सुपर अर्ली कटहल – किस्म और उत्पत्ति</h4>
+      <p style="color:#666;">इस किस्म का नाम "वियतनाम सुपर अर्ली कटहल" है और यह वियतनाम से आती है। यह भारत में देशी किस्मों की तुलना में 5 महीने पहले फल देना शुरू करती है।</p>
     </article>
-    <article class="post"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='220'><rect width='100%' height='100%' fill='%23fff7f0'/><text x='50%' y='50%' font-family='Montserrat' fill='%23888' text-anchor='middle'>Blog</text></svg>" style="width:100%;border-radius:8px" alt="Blog image">
-      <h4>Aliquam Querat Voluptatem</h4>
-      <p style="color:#666;">A quick idea for planting succulents at home.</p>
+    <article class="post"><img src="images/news-5.webp" alt="Blog image" style="width:100%;border-radius:8px;object-fit:cover;height:280px;">
+      <h4>🏆 हमें क्यों चुनें</h4>
+      <p style="color:#666;">4+ साल पुराने मातृ पौधों से नर्सरी पौधे तैयार। मजबूत, स्वस्थ और उच्च गुणवत्ता वाले उत्पादन सुनिश्चित।</p>
     </article>
   </div>
 </section>
@@ -1902,8 +1926,16 @@
 <footer id="contact">
   <h3>📍 Shabnam Nursery</h3>
   <p>Baduria, Basirhat, North 24 Parganas, West Bengal</p>
-  <p>📞 Phone: <a href="tel:7584805020">7584805020</a></p>
+  <p>📞 Phone: <a href="tel:7584805020">7584805020 / 8436112523</a></p>
   <p>📧 Email: <a href="mailto:shabnammondal2022@gmail.com">shabnammondal2022@gmail.com</a></p>
+
+  <!-- 🕒 Opening Hours -->
+  <div class="opening-hours">
+    <h4>🕒 Opening Hours</h4>
+    <p>Monday - Friday: <strong>09.00 AM - 09.00 PM</strong></p>
+    <p>Saturday - Sunday: <strong>09.00 AM - 12.00 PM</strong></p>
+  </div>
+
   <iframe 
     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29501.59924200498!2d88.7890557!3d22.7297193!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff534ad7d2e52d%3A0x37e434392a4ef07e!2sShabnam%20Nursery!5e0!3m2!1sen!2sin!4v1657790712836!5m2!1sen!2sin" 
     width="100%" 
@@ -1913,8 +1945,10 @@
     loading="lazy" 
     referrerpolicy="no-referrer-when-downgrade">
   </iframe>
+
   <p style="margin-top:14px;font-size:14px;">© 2025 Shabnam Nursery. All Rights Reserved.</p>
 </footer>
+
 
 <script>
   // Hero Slideshow
@@ -2078,7 +2112,7 @@
       el.innerHTML=`
         <img src="${p.image}" alt="${p.name}">
         <h3>${p.name}</h3>
-        <p>৳${p.price}</p>
+        <p>₹${p.price}</p>
         <button onclick="addToCart(this)" data-name="${p.name}" data-price="${p.price}" data-img="${p.image}">Add to Cart</button>`;
       grid.appendChild(el);
     });
@@ -2163,7 +2197,7 @@
           <img src="${item.img}" alt="${item.name}">
           <div class="item-info">
             <h4>${item.name}</h4>
-            <span>৳${item.price} x ${item.qty}</span>
+            <span>₹${item.price} x ${item.qty}</span>
           </div>
           <div class="item-actions">
             <button onclick="changeQty(${i}, 1)">+</button>
@@ -2252,7 +2286,7 @@
       summaryHTML += `
         <div class="summary-item">
           <span>${item.name} x${item.qty}</span>
-          <span>৳${itemTotal}</span>
+          <span>₹${itemTotal}</span>
         </div>
       `;
     });
@@ -2302,10 +2336,10 @@
     let message = "Hello Shabnam Nursery! I would like to place an order:%0A%0A";
     
     cart.forEach(item => {
-      message += `- ${item.name} x${item.qty} (৳${item.price * item.qty})%0A`;
+      message += `- ${item.name} x${item.qty} (₹${item.price * item.qty})%0A`;
     });
     
-    message += `%0ATotal: ৳${document.getElementById("payment-total").textContent}%0A`;
+    message += `%0ATotal: ₹${document.getElementById("payment-total").textContent}%0A`;
     message += `Payment Method: ${selectedPaymentMethod}%0A%0A`;
     message += "Please confirm my order. Thank you!";
     
