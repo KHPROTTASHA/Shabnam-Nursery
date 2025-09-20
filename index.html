@@ -237,6 +237,69 @@
     font-weight:bold;
   }
   
+
+
+  /* Product Modal */
+.product-modal {
+  display: none; /* hidden by default */
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease;
+}
+
+.product-modal.show {
+  display: flex;
+}
+
+.product-modal .modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+  animation: fadeIn 0.3s ease;
+}
+
+.product-modal .modal-content img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.product-modal .modal-content h3 {
+  margin: 10px 0;
+  font-size: 22px;
+  color: #333;
+}
+
+.product-modal .modal-content p {
+  color: #555;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.product-modal .close {
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  font-size: 28px;
+  color: #333;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
   /* Hamburger - Improved for mobile - Moved to right */
   .hamburger{
     display:none;
@@ -549,34 +612,149 @@
   .about-us h3{font-size:22px;margin-bottom:16px;}
   .about-us p, .about-us li{font-size:16px;line-height:1.8;margin-bottom:14px;}
   
-  /* Services */
-  #services{
-    padding:80px 8%;
-    background:#f7fdf7;
-    text-align:center;
-    background: var(--background-color);
+ /* Services Section */
+#services {
+  padding: 80px 8%;
+  background: var(--background-color);
+  text-align: center;
   color: var(--text-color);
   border-top: 1px solid var(--border-color);
   transition: background 0.3s, color 0.3s;
-  }
-  #services h2{font-size:32px;color:#6BCB77;margin-bottom:14px;font-weight:700;}
-  #services > p{font-size:16px;line-height:1.6;color:var(--text-color);margin-bottom:40px;}
-  .service-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:24px;
-  }
-  .service-item{
-    background:#fff;
-    padding:28px 20px;
-    border-radius:14px;
-    box-shadow:0 6px 20px rgba(0,0,0,0.08);
-    transition:all 0.3s ease;
-  }
-  .service-item .icon{font-size:40px;margin-bottom:16px;}
-  .service-item h4{color:#6BCB77;margin-bottom:8px;font-size:20px;font-weight:600;}
-  .service-item p{font-size:15px;color:#555;}
-  
+}
+
+#services h2 {
+  font-size: 32px;
+  color: #6BCB77;
+  margin-bottom: 14px;
+  font-weight: 700;
+}
+
+#services > p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-color);
+  margin-bottom: 40px;
+}
+
+/* Grid layout */
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+/* Service item */
+.service-item {
+  background: #fff;
+  padding: 28px 20px;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.service-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.service-item .icon {
+  font-size: 40px;
+  margin-bottom: 16px;
+}
+
+.service-item h4 {
+  color: #6BCB77;
+  margin-bottom: 8px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.service-item p {
+  font-size: 15px;
+  color: #555;
+}
+
+/* Details (hidden by default) */
+.service-item .details {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  margin-top: 0;
+  font-size: 14px;
+  color: #444;
+  line-height: 1.4;
+  transition: max-height 0.4s ease, opacity 0.4s ease, margin-top 0.4s ease;
+}
+
+.service-item.active .details {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 10px;
+}
+
+/* 24/7 Support (click to call) */
+.call-now {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.call-now:hover {
+  background: #f0fff0;
+}
+/* ===== Service Modal Styles ===== */
+/* Service Modal */
+.service-modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+.service-modal.show {
+  display: flex;
+}
+.service-modal .modal-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 14px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  animation: fadeInUp 0.3s ease;
+}
+.service-modal .icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+.service-modal h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #6BCB77;
+}
+.service-modal p {
+  font-size: 15px;
+  color: #444;
+  margin: 6px 0;
+}
+.service-modal .close {
+  position: absolute;
+  top: 12px; right: 16px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
   /* Fact Counter Section */
   .fact {
     padding: 80px 8%;
@@ -1497,32 +1675,58 @@
 </section>
 
 <!-- Services -->
+
 <section id="services">
   <h2>Welcome To Our Services</h2>
-  <p>Quick service to welcome valuable customers, plant products and all. We craft care guides with each order so your new plant thrives.</p>
+  <p>
+    Quick service to welcome valuable customers, plant products and all. 
+    We craft care guides with each order so your new plant thrives.
+  </p>
+
   <div class="service-grid">
-    <div class="service-item">
+    <!-- Service Item -->
+    <div class="service-item" onclick="openServiceModal(this)">
       <div class="icon">🚚</div>
       <h4>Free Shipping</h4>
       <p>On orders over $50</p>
+      <div class="details">We provide fast and secure delivery on all orders above $50.</div>
     </div>
-    <div class="service-item">
+
+    <div class="service-item" onclick="openServiceModal(this)">
       <div class="icon">🔁</div>
       <h4>Easy Returns</h4>
       <p>30 day returns</p>
+      <div class="details">Return or exchange items within 30 days hassle-free.</div>
     </div>
-    <div class="service-item">
+
+    <div class="service-item" onclick="openServiceModal(this)">
       <div class="icon">💰</div>
       <h4>Big Saving</h4>
       <p>Seasonal Discounts</p>
+      <div class="details">Enjoy amazing discounts during festive and seasonal sales.</div>
     </div>
-    <div class="service-item">
+
+    <!-- Support - Click to Call -->
+    <a href="tel:+8801234567890" class="service-item call-now">
       <div class="icon">📞</div>
       <h4>24/7 Support</h4>
       <p>We are here to help</p>
+    </a>
+  </div>
+
+  <!-- Service Modal -->
+  <div id="serviceModal" class="service-modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeServiceModal()">&times;</span>
+      <div id="modalIcon" class="icon"></div>
+      <h3 id="modalTitle"></h3>
+      <p id="modalSubtitle"></p>
+      <p id="modalText"></p>
     </div>
   </div>
 </section>
+
+
 
 <!-- Fact Counter Section - Fixed -->
 <div class="fact" style="background: linear-gradient(135deg, #6BCB77, #35a16a);">
@@ -1583,15 +1787,16 @@
   </div>
 </section>
 
-<!-- Modal -->
-<div class="modal" id="productModal">
-  <span class="close" onclick="closeModal()">&times;</span>
+<!-- Product Modal -->
+<div class="product-modal" id="productModal">
   <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
     <img id="modalImg" src="">
     <h3 id="modalTitle"></h3>
     <p id="modalDesc"></p>
   </div>
 </div>
+
 
 <!-- Trending Products -->
 <section class="shop-section" id="trending-products">
@@ -1952,446 +2157,304 @@
 
 
 <script>
-  // Hero Slideshow
-  let slides = document.querySelectorAll(".slide");
-  let dots = document.querySelectorAll(".dot");
-  let index = 0;
-  function goToSlide(i){
-    slides[index].classList.remove("active");
-    dots[index].classList.remove("active");
-    index = i;
-    slides[index].classList.add("active");
-    dots[index].classList.add("active");
-    animateText();
-  }
-  function animateText(){
-    const h4=document.querySelector(".hero-content h4");
-    const h1=document.querySelector(".hero-content h1");
-    const p=document.querySelector(".hero-content p");
-    const btns=document.querySelectorAll(".buttons a");
-    [h4,h1,p,...btns].forEach(el=>{el.style.opacity=0;el.style.transform="translateY(20px)";});
-    setTimeout(()=>{[h4,h1,p,...btns].forEach(el=>{el.style.opacity=1;el.style.transform="translateY(0)";});},100);
-  }
-  setInterval(()=>{goToSlide((index+1)%slides.length);},5000);
+  /* ----------------- Hero Slideshow ----------------- */
+let slides = document.querySelectorAll(".slide");
+let dots = document.querySelectorAll(".dot");
+let index = 0;
+
+function goToSlide(i) {
+  slides[index].classList.remove("active");
+  dots[index].classList.remove("active");
+  index = i;
+  slides[index].classList.add("active");
+  dots[index].classList.add("active");
   animateText();
-  
-  // Hamburger toggle
-  function toggleMenu(){
-    document.querySelector("nav").classList.toggle("active");
-    document.querySelector(".hamburger").classList.toggle("active");
-  }
-  
-  function closeMenu() {
-    document.querySelector("nav").classList.remove("active");
-    document.querySelector(".hamburger").classList.remove("active");
-  }
-  
-  // About Us scroll animation
-  const aboutSection = document.querySelector(".about-us");
-  function revealAboutUs(){
-    const windowHeight=window.innerHeight;
-    const elementTop=aboutSection.getBoundingClientRect().top;
-    const revealPoint=150;
-    if(elementTop<windowHeight-revealPoint){
-      aboutSection.style.opacity=1;
-      aboutSection.style.transform="translateY(0)";
-    }
-  }
-  window.addEventListener("scroll",revealAboutUs);
-  window.addEventListener("load",revealAboutUs);
-  
-  // IntersectionObserver for counter animation
-  const counters = document.querySelectorAll('.counter');
-  const speed = 200;
-  
-  const animateCounter = (counter) => {
-    const target = +counter.getAttribute('data-target');
-    const updateCount = () => {
-      const current = +counter.innerText;
-      const increment = Math.ceil(target / speed);
-      if (current < target) {
-        counter.innerText = current + increment;
-        setTimeout(updateCount, 20);
-      } else {
-        counter.innerText = target;
-      }
-    };
-    updateCount();
-  };
-  
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateCounter(entry.target);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-  
-  counters.forEach(counter => {
-    observer.observe(counter);
+}
+function animateText() {
+  const h4 = document.querySelector(".hero-content h4");
+  const h1 = document.querySelector(".hero-content h1");
+  const p = document.querySelector(".hero-content p");
+  const btns = document.querySelectorAll(".buttons a");
+  [h4, h1, p, ...btns].forEach(el => {
+    el.style.opacity = 0;
+    el.style.transform = "translateY(20px)";
   });
-  
-  // Product slider
-  const track = document.getElementById('product-track');
-  const productCards = document.querySelectorAll('.product-card');
-  let currentIndex = 0;
-  const total = productCards.length;
-  function updateSlider(){
-    const slideWidth = productCards[0].offsetWidth + 18;
-    track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+  setTimeout(() => {
+    [h4, h1, p, ...btns].forEach(el => {
+      el.style.opacity = 1;
+      el.style.transform = "translateY(0)";
+    });
+  }, 100);
+}
+setInterval(() => { goToSlide((index + 1) % slides.length); }, 5000);
+animateText();
+
+/* ----------------- Hamburger ----------------- */
+function toggleMenu() {
+  document.querySelector("nav").classList.toggle("active");
+  document.querySelector(".hamburger").classList.toggle("active");
+}
+function closeMenu() {
+  document.querySelector("nav").classList.remove("active");
+  document.querySelector(".hamburger").classList.remove("active");
+}
+document.addEventListener("click", e => {
+  if (!e.target.closest("nav") && !e.target.closest(".hamburger")) {
+    closeMenu();
   }
-  let autoSlide = setInterval(()=>{
+});
+
+/* ----------------- About Us scroll animation ----------------- */
+const aboutSection = document.querySelector(".about-us");
+function revealAboutUs() {
+  if (!aboutSection) return;
+  const windowHeight = window.innerHeight;
+  const elementTop = aboutSection.getBoundingClientRect().top;
+  if (elementTop < windowHeight - 150) {
+    aboutSection.style.opacity = 1;
+    aboutSection.style.transform = "translateY(0)";
+  }
+}
+window.addEventListener("scroll", revealAboutUs);
+window.addEventListener("load", revealAboutUs);
+
+/* ----------------- Counter ----------------- */
+const counters = document.querySelectorAll(".counter");
+const speed = 200;
+function animateCounter(counter) {
+  const target = +counter.getAttribute("data-target");
+  const updateCount = () => {
+    const current = +counter.innerText;
+    const increment = Math.ceil(target / speed);
+    if (current < target) {
+      counter.innerText = current + increment;
+      setTimeout(updateCount, 20);
+    } else counter.innerText = target;
+  };
+  updateCount();
+}
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounter(entry.target);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+counters.forEach(c => observer.observe(c));
+
+/* ----------------- Product Slider ----------------- */
+const track = document.getElementById("product-track");
+const productCards = document.querySelectorAll(".product-card");
+let currentIndex = 0, total = productCards.length;
+function updateSlider() {
+  const slideWidth = productCards[0].offsetWidth + 18;
+  track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+}
+let autoSlide = setInterval(() => {
+  currentIndex = (currentIndex + 1) % total;
+  updateSlider();
+}, 3000);
+document.getElementById("next").addEventListener("click", () => {
+  currentIndex = (currentIndex + 1) % total;
+  updateSlider(); resetInterval();
+});
+document.getElementById("prev").addEventListener("click", () => {
+  currentIndex = (currentIndex - 1 + total) % total;
+  updateSlider(); resetInterval();
+});
+function resetInterval() {
+  clearInterval(autoSlide);
+  autoSlide = setInterval(() => {
     currentIndex = (currentIndex + 1) % total;
     updateSlider();
-  },3000);
-  document.getElementById('next').addEventListener('click', ()=>{
-    currentIndex = (currentIndex + 1) % total;
-    updateSlider(); resetInterval();
-  });
-  document.getElementById('prev').addEventListener('click', ()=>{
-    currentIndex = (currentIndex - 1 + total) % total;
-    updateSlider(); resetInterval();
-  });
-  function resetInterval(){clearInterval(autoSlide); autoSlide = setInterval(()=>{currentIndex = (currentIndex + 1) % total; updateSlider();},3000);}
-  
-  // Testimonial slider
-  const testimonialTrack = document.getElementById('testimonial-track');
-  const testimonialSlides = document.querySelectorAll('.testimonial-slide');
-  let testimonialIndex = 0;
-  
-  function updateTestimonialSlider() {
-    testimonialTrack.style.transform = `translateX(-${testimonialIndex * 100}%)`;
-  }
-  
-  document.getElementById('testimonial-next').addEventListener('click', () => {
-    testimonialIndex = (testimonialIndex + 1) % testimonialSlides.length;
-    updateTestimonialSlider();
-  });
-  
-  document.getElementById('testimonial-prev').addEventListener('click', () => {
-    testimonialIndex = (testimonialIndex - 1 + testimonialSlides.length) % testimonialSlides.length;
-    updateTestimonialSlider();
-  });
-  
-  // Auto slide testimonials
-  setInterval(() => {
-    testimonialIndex = (testimonialIndex + 1) % testimonialSlides.length;
-    updateTestimonialSlider();
-  }, 5000);
-  
-  // Modal
-  const modal = document.getElementById('productModal');
-  const modalImg = document.getElementById('modalImg');
-  const modalTitle = document.getElementById('modalTitle');
-  const modalDesc = document.getElementById('modalDesc');
-  productCards.forEach(product=>{
-    product.addEventListener('click',()=>{
-      modal.style.display='flex';
-      modalImg.src = product.dataset.img;
-      modalTitle.textContent = product.dataset.title;
-      modalDesc.textContent = product.dataset.desc;
-    });
-  });
-  
-  // Simple product data for demo
-  const Tproducts = [
-    {id:1,name:'Ficus Elastica',price:1100,tag:'featured',rating:4, image: 'images/Ficus Elastica.jpg'},
-    {id:2,name:'Monstera Deliciosa',price:2600,tag:'featured',rating:5, image: 'images/Monstera Deliciosa.png'},
-    {id:3,name:'Snake Plant',price:72,tag:'latest',rating:4, image: 'images/Snake Plant.png'},
-    {id:4,name:'Peace Lily',price:55,tag:'latest',rating:5, image: 'images/Peace Lily.webp'},
-    {id:5,name:'Aloe Vera',price:33,tag:'bestseller',rating:4, image: 'images/Aloe Vera.jpg'},
-    {id:6,name:'Spider Plant',price:80,tag:'bestseller',rating:5, image: 'images/Spider Plant.jpg'},
-  ];
-  
-  function renderProducts(tag='featured'){
-    const grid=document.getElementById('trendingGrid');
-    grid.innerHTML='';
-    Tproducts.filter(p=>p.tag===tag).forEach(p=>{
-      const el=document.createElement('div');
-      el.className='product';
-      el.innerHTML=`
-        <img src="${p.image}" alt="${p.name}">
-        <h3>${p.name}</h3>
-        <p>₹${p.price}</p>
-        <button onclick="addToCart(this)" data-name="${p.name}" data-price="${p.price}" data-img="${p.image}">Add to Cart</button>`;
-      grid.appendChild(el);
-    });
-  }
-  renderProducts();
-  
-  document.querySelectorAll('.tab').forEach(tab=>{
-    tab.addEventListener('click',()=>{
-      document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-      tab.classList.add('active');
-      renderProducts(tab.dataset.tab);
-    });
-  });
-  
-  let cart = [];
-  let selectedPaymentMethod = '';
-  let isSubscribed = localStorage.getItem('subscribed') === 'true';
-  
-  function addToCart(btn){
-    // Get product details from data attributes
-    const name = btn.getAttribute('data-name');
-    const price = parseInt(btn.getAttribute('data-price'));
-    const img = btn.getAttribute('data-img');
-    
-    // Check if the product already exists in the cart
-    const existingItem = cart.find(item => item.name === name);
-    
-    if (existingItem) {
-      // If it exists, increase the quantity
-      existingItem.qty += 1;
-    } else {
-      // If it doesn't exist, add new item to cart
-      cart.push({
-        name: name,
-        price: price,
-        img: img,
-        qty: 1
-      });
-    }
-    
-    // Update the cart display
-    updateCart();
-    
-    // Show a quick confirmation
-    const confirmation = document.createElement('div');
-    confirmation.textContent = `${name} added to cart!`;
-    confirmation.style.position = 'fixed';
-    confirmation.style.bottom = '20px';
-    confirmation.style.right = '20px';
-    confirmation.style.backgroundColor = 'var(--green)';
-    confirmation.style.color = 'white';
-    confirmation.style.padding = '10px 20px';
-    confirmation.style.borderRadius = '5px';
-    confirmation.style.zIndex = '10000';
-    document.body.appendChild(confirmation);
-    
-    // Remove confirmation after 2 seconds
-    setTimeout(() => {
-      document.body.removeChild(confirmation);
-    }, 2000);
-  }
-  
-  function updateCart(){
-    const cartItems = document.getElementById("cart-items");
-    const cartCount = document.getElementById("cart-count");
-    const cartTotal = document.getElementById("cart-total");
-    
-    // Clear current cart items
-    cartItems.innerHTML = "";
-    
-    let total = 0;
-    let count = 0;
-    
-    // Add each item to the cart display
-    cart.forEach((item, i) => {
-      const itemTotal = item.price * item.qty;
-      total += itemTotal;
-      count += item.qty;
-      
-      cartItems.innerHTML += `
-        <div class="cart-item">
-          <img src="${item.img}" alt="${item.name}">
-          <div class="item-info">
-            <h4>${item.name}</h4>
-            <span>₹${item.price} x ${item.qty}</span>
-          </div>
-          <div class="item-actions">
-            <button onclick="changeQty(${i}, 1)">+</button>
-            <button onclick="changeQty(${i}, -1)">-</button>
-            <button class="remove" onclick="removeItem(${i})">✖</button>
-          </div>
-        </div>`;
-    });
-    
-    // Update cart count and total
-    cartCount.textContent = count;
-    cartTotal.textContent = total;
-    
-    // If cart is empty, show a message
-    if (cart.length === 0) {
-      cartItems.innerHTML = '<p style="text-align: center; padding: 20px;">Your cart is empty</p>';
-    }
-  }
-  
-  function changeQty(i, delta){
-    cart[i].qty += delta;
-    
-    // Remove item if quantity is 0 or less
-    if (cart[i].qty <= 0) {
-      cart.splice(i, 1);
-    }
-    
-    updateCart();
-  }
-  
-  function removeItem(i){
-    cart.splice(i, 1);
-    updateCart();
-  }
-  
-  function toggleCart(){
-    document.getElementById("cart").classList.toggle("active");
-  }
-  
-  function closeModal(){
-    modal.style.display = 'none';
-  }
-  
-  // Form submission
-  document.getElementById('subscription-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    isSubscribed = true;
-    localStorage.setItem('subscribed', 'true');
-    alert('Thank you for subscribing to our newsletter!');
-    this.reset();
-  });
-  
-  // Checkout subscription form
-  document.getElementById('checkout-subscription-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    isSubscribed = true;
-    localStorage.setItem('subscribed', 'true');
-    closeSubscriptionModal();
-    completeOrder();
-  });
-  
-  function openSubscriptionModal() {
-    document.getElementById('subscription-modal').classList.add('active');
-  }
-  
-  function closeSubscriptionModal() {
-    document.getElementById('subscription-modal').classList.remove('active');
-  }
-  
-  // Payment Page Functions
-  function openPaymentPage() {
-    if (cart.length === 0) {
-      alert("Your cart is empty. Please add some products first.");
-      return;
-    }
-    
-    // Update payment summary
-    const paymentSummary = document.getElementById("payment-summary");
-    const paymentTotal = document.getElementById("payment-total");
-    let summaryHTML = '';
-    let total = 0;
-    
-    cart.forEach(item => {
-      const itemTotal = item.price * item.qty;
-      total += itemTotal;
-      summaryHTML += `
-        <div class="summary-item">
-          <span>${item.name} x${item.qty}</span>
-          <span>₹${itemTotal}</span>
-        </div>
-      `;
-    });
-    
-    paymentSummary.innerHTML = summaryHTML;
-    paymentTotal.textContent = total;
-    
-    // Show payment page
-    document.getElementById("payment-page").classList.add("active");
-    // Hide cart
-    toggleCart();
-  }
-  
-  function closePaymentPage() {
-    document.getElementById("payment-page").classList.remove("active");
-  }
-  
-  function selectPayment(element, method) {
-    // Remove selected class from all methods
-    document.querySelectorAll('.payment-method').forEach(el => {
-      el.classList.remove('selected');
-    });
-    
-    // Add selected class to clicked method
-    element.classList.add('selected');
-    selectedPaymentMethod = method;
-  }
-  
-  function confirmOrder() {
-    if (!selectedPaymentMethod) {
-      alert("Please select a payment method.");
-      return;
-    }
-    
-    // Check if user is subscribed
-    if (!isSubscribed) {
-      openSubscriptionModal();
-      return;
-    }
-    
-    completeOrder();
-  }
-  
-  function completeOrder() {
-    // Generate WhatsApp message
-    const phoneNumber = "8807584805020"; // Default number
-    let message = "Hello Shabnam Nursery! I would like to place an order:%0A%0A";
-    
-    cart.forEach(item => {
-      message += `- ${item.name} x${item.qty} (₹${item.price * item.qty})%0A`;
-    });
-    
-    message += `%0ATotal: ₹${document.getElementById("payment-total").textContent}%0A`;
-    message += `Payment Method: ${selectedPaymentMethod}%0A%0A`;
-    message += "Please confirm my order. Thank you!";
-    
-    // Create WhatsApp link
-    const whatsappLink = document.getElementById("whatsapp-link");
-    whatsappLink.href = `https://wa.me/${phoneNumber}?text=${message}`;
-    
-    // Show WhatsApp section
-    document.getElementById("whatsapp-section").style.display = "block";
-    
-    // Scroll to WhatsApp section
-    document.getElementById("whatsapp-section").scrollIntoView({ behavior: 'smooth' });
-    
-    alert(`Order placed successfully with ${selectedPaymentMethod} payment!`);
-  }
-  
-  // Initialize
-  updateCart();
+  }, 3000);
+}
+
+/* ----------------- Testimonial Slider ----------------- */
+const testimonialTrack = document.getElementById("testimonial-track");
+const testimonialSlides = document.querySelectorAll(".testimonial-slide");
+let testimonialIndex = 0;
+function updateTestimonialSlider() {
+  testimonialTrack.style.transform = `translateX(-${testimonialIndex * 100}%)`;
+}
+document.getElementById("testimonial-next").addEventListener("click", () => {
+  testimonialIndex = (testimonialIndex + 1) % testimonialSlides.length;
   updateTestimonialSlider();
-  
-  // Close dropdowns when clicking outside
-  document.addEventListener('click', function(event) {
-    const isClickInsideNav = event.target.closest('nav');
-    const isClickInsideHamburger = event.target.closest('.hamburger');
-    
-    if (!isClickInsideNav && !isClickInsideHamburger) {
-      document.querySelector("nav").classList.remove("active");
-      document.querySelector(".hamburger").classList.remove("active");
-    }
-  });
-  const toggleBtn = document.getElementById("theme-toggle");
-  const body = document.body;
+});
+document.getElementById("testimonial-prev").addEventListener("click", () => {
+  testimonialIndex = (testimonialIndex - 1 + testimonialSlides.length) % testimonialSlides.length;
+  updateTestimonialSlider();
+});
+setInterval(() => {
+  testimonialIndex = (testimonialIndex + 1) % testimonialSlides.length;
+  updateTestimonialSlider();
+}, 5000);
 
-  // Default theme load from localStorage
-  if(localStorage.getItem("theme") === "dark"){
-    body.setAttribute("data-theme", "dark");
-    toggleBtn.textContent = "⭐";
+/* ----------------- Product Modal ----------------- */
+const productModal = document.getElementById("productModal");
+const modalImg = document.getElementById("modalImg");
+const modalTitle = document.getElementById("modalTitle");
+const modalDesc = document.getElementById("modalDesc");
+productCards.forEach(product => {
+  product.addEventListener("click", () => {
+    productModal.style.display = "flex";
+    modalImg.src = product.dataset.img;
+    modalTitle.textContent = product.dataset.title;
+    modalDesc.textContent = product.dataset.desc;
+  });
+});
+function closeModal() { productModal.style.display = "none"; }
+
+/* ----------------- Service Modal ----------------- */
+let activeCard = null;
+function openServiceModal(card) {
+  if (activeCard) activeCard.classList.remove("active");
+  activeCard = card; card.classList.add("active");
+
+  const icon = card.querySelector(".icon").innerText;
+  const title = card.querySelector("h4").innerText;
+  const subtitle = card.querySelector("p").innerText;
+  const details = card.querySelector(".details").innerText;
+
+  document.getElementById("modalIcon").innerText = icon;
+  document.getElementById("modalTitle").innerText = title;
+  document.getElementById("modalSubtitle").innerText = subtitle;
+  document.getElementById("modalText").innerText = details;
+
+  document.getElementById("serviceModal").classList.add("show");
+}
+function closeServiceModal() {
+  document.getElementById("serviceModal").classList.remove("show");
+  if (activeCard) { activeCard.classList.remove("active"); activeCard = null; }
+}
+window.addEventListener("click", e => {
+  const serviceModal = document.getElementById("serviceModal");
+  if (e.target === serviceModal) closeServiceModal();
+});
+
+/* ----------------- Cart System ----------------- */
+let cart = [];
+function addToCart(btn) {
+  const name = btn.getAttribute("data-name");
+  const price = parseInt(btn.getAttribute("data-price"));
+  const img = btn.getAttribute("data-img");
+  const existing = cart.find(i => i.name === name);
+  if (existing) existing.qty += 1;
+  else cart.push({ name, price, img, qty: 1 });
+  updateCart();
+
+  const conf = document.createElement("div");
+  conf.textContent = `${name} added to cart!`;
+  conf.style.position = "fixed";
+  conf.style.bottom = "20px";
+  conf.style.right = "20px";
+  conf.style.backgroundColor = "var(--green)";
+  conf.style.color = "white";
+  conf.style.padding = "10px 20px";
+  conf.style.borderRadius = "5px";
+  conf.style.zIndex = "10000";
+  document.body.appendChild(conf);
+  setTimeout(() => document.body.removeChild(conf), 2000);
+}
+function updateCart() {
+  const cartItems = document.getElementById("cart-items");
+  const cartCount = document.getElementById("cart-count");
+  const cartTotal = document.getElementById("cart-total");
+  cartItems.innerHTML = "";
+  let total = 0, count = 0;
+  cart.forEach((item, i) => {
+    const itemTotal = item.price * item.qty;
+    total += itemTotal; count += item.qty;
+    cartItems.innerHTML += `
+      <div class="cart-item">
+        <img src="${item.img}" alt="${item.name}">
+        <div class="item-info">
+          <h4>${item.name}</h4>
+          <span>₹${item.price} x ${item.qty}</span>
+        </div>
+        <div class="item-actions">
+          <button onclick="changeQty(${i},1)">+</button>
+          <button onclick="changeQty(${i},-1)">-</button>
+          <button class="remove" onclick="removeItem(${i})">✖</button>
+        </div>
+      </div>`;
+  });
+  cartCount.textContent = count;
+  cartTotal.textContent = total;
+  if (cart.length === 0) cartItems.innerHTML = "<p style='text-align:center;padding:20px;'>Your cart is empty</p>";
+}
+function changeQty(i, d) { cart[i].qty += d; if (cart[i].qty <= 0) cart.splice(i, 1); updateCart(); }
+function removeItem(i) { cart.splice(i, 1); updateCart(); }
+function toggleCart() { document.getElementById("cart").classList.toggle("active"); }
+
+/* ----------------- Subscription + Payment ----------------- */
+let selectedPaymentMethod = "", isSubscribed = localStorage.getItem("subscribed") === "true";
+document.getElementById("subscription-form").addEventListener("submit", e => {
+  e.preventDefault();
+  isSubscribed = true; localStorage.setItem("subscribed", "true");
+  alert("Thank you for subscribing!"); e.target.reset();
+});
+document.getElementById("checkout-subscription-form").addEventListener("submit", e => {
+  e.preventDefault();
+  isSubscribed = true; localStorage.setItem("subscribed", "true");
+  closeSubscriptionModal(); completeOrder();
+});
+function openSubscriptionModal() { document.getElementById("subscription-modal").classList.add("active"); }
+function closeSubscriptionModal() { document.getElementById("subscription-modal").classList.remove("active"); }
+function openPaymentPage() {
+  if (cart.length === 0) { alert("Your cart is empty"); return; }
+  const summary = document.getElementById("payment-summary");
+  const totalEl = document.getElementById("payment-total");
+  let total = 0, html = "";
+  cart.forEach(item => {
+    const itemTotal = item.price * item.qty; total += itemTotal;
+    html += `<div class="summary-item"><span>${item.name} x${item.qty}</span><span>₹${itemTotal}</span></div>`;
+  });
+  summary.innerHTML = html; totalEl.textContent = total;
+  document.getElementById("payment-page").classList.add("active");
+  toggleCart();
+}
+function closePaymentPage() { document.getElementById("payment-page").classList.remove("active"); }
+function selectPayment(el, method) {
+  document.querySelectorAll(".payment-method").forEach(e => e.classList.remove("selected"));
+  el.classList.add("selected"); selectedPaymentMethod = method;
+}
+function confirmOrder() {
+  if (!selectedPaymentMethod) { alert("Select a payment method"); return; }
+  if (!isSubscribed) { openSubscriptionModal(); return; }
+  completeOrder();
+}
+function completeOrder() {
+  const phoneNumber = "8807584805020";
+  let msg = "Hello! I would like to place an order:%0A%0A";
+  cart.forEach(item => { msg += `- ${item.name} x${item.qty} (₹${item.price * item.qty})%0A`; });
+  msg += `%0ATotal: ₹${document.getElementById("payment-total").textContent}%0A`;
+  msg += `Payment Method: ${selectedPaymentMethod}%0A%0AThank you!`;
+  document.getElementById("whatsapp-link").href = `https://wa.me/${phoneNumber}?text=${msg}`;
+  document.getElementById("whatsapp-section").style.display = "block";
+  document.getElementById("whatsapp-section").scrollIntoView({ behavior: "smooth" });
+  alert(`Order placed with ${selectedPaymentMethod}!`);
+}
+
+/* ----------------- Theme Toggle ----------------- */
+const toggleBtn = document.getElementById("theme-toggle");
+const body = document.body;
+if (localStorage.getItem("theme") === "dark") { body.setAttribute("data-theme", "dark"); toggleBtn.textContent = "⭐"; }
+toggleBtn.addEventListener("click", () => {
+  if (body.getAttribute("data-theme") === "dark") {
+    body.removeAttribute("data-theme"); localStorage.setItem("theme", "light"); toggleBtn.textContent = "🌓";
+  } else {
+    body.setAttribute("data-theme", "dark"); localStorage.setItem("theme", "dark"); toggleBtn.textContent = "⭐";
   }
+});
 
-  toggleBtn.addEventListener("click", () => {
-    if(body.getAttribute("data-theme") === "dark"){
-      body.removeAttribute("data-theme");
-      localStorage.setItem("theme", "light");
-      toggleBtn.textContent = "🌓";
-    } else {
-      body.setAttribute("data-theme", "dark");
-      localStorage.setItem("theme", "dark");
-      toggleBtn.textContent = "⭐";
-    }
-  });
+/* ----------------- Init ----------------- */
+updateCart();
+updateTestimonialSlider();
+
   </script>
+  
   
 
 </body>
